@@ -1,1 +1,50 @@
+/********* Colors ********/
 
+:root {
+  --yellow-color: #f6cb60;
+  --black-color: #000;
+}
+
+/********* Typography ********/
+
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
+/********* UI elements ********/
+
+button {
+  border: none;
+}
+
+.footer_button {
+  height: 50px;
+  background-color: var(--yellow-color);
+  margin: 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/********* Header ********/
+
+header {
+  background-color: var(--black-color);
+  text-align: center;
+}
+
+#logo {
+  height: 40px;
+  margin: 15px;
+}
+
+#yellow_bar {
+  background-color: var(--yellow-color);
+  height: 25px;
+}
+
+/********* Footer ********/
+
+footer {
+  background-color: var(--black-color);
+  text-align: right;
+}
