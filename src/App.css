@@ -1,8 +1,15 @@
 /********* Colors ********/
 
+* {
+  box-sizing: border-box;
+}
+
+/********* Colors ********/
+
 :root {
   --yellow-color: #f6cb60;
   --black-color: #000;
+  --blue-color: #005FF2;
 }
 
 /********* Typography ********/
@@ -40,6 +47,40 @@ header {
 #yellow_bar {
   background-color: var(--yellow-color);
   height: 25px;
+}
+
+/********* Form ********/
+
+form {
+  width: 85%;
+  margin: 25px auto;
+  padding: 0 15px;
+  min-height: calc(100vh - 219px); /* For making a sticky footer */
+}
+
+form h2 {
+  text-align: center;
+}
+
+#vatNumber {
+  width: 50%;
+  height: 30px;
+  padding-left: 10px;
+  margin: 0 auto;
+  display: block;
+  font-size: 1rem;
+}
+
+.submit {
+  width: 30%;
+  display: block;
+  margin: 25px auto 0;
+  height: 40px;
+  font-size: 1rem;
+  font-weight: 700;
+  background-color: var(--blue-color);
+  color: #fff;
+  border-radius: 5px;
 }
 
 /********* Footer ********/
