@@ -5,8 +5,8 @@ const Nav = () => {
     return(
         <nav>
             <ul id="mainNav">
-                <li><a>VAT Checker</a></li>
-                <li><a>About this project</a></li>
+                <li><NavLink to="/">VAT Checker</NavLink></li>
+                <li><NavLink to="/about">About this project</NavLink></li>
             </ul>
         </nav>
     )

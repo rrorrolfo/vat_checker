@@ -8,6 +8,14 @@ ul {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: initial;
+}
+
 #mainNav li a:hover,
 button:hover {
   cursor: pointer;
@@ -81,6 +89,7 @@ header {
   display: block;
   padding: 15px 10px;
   font-weight: 700;
+  color: #000;
 }
 
 /********* Form ********/
@@ -121,7 +130,8 @@ form h2 {
 
 #about {
   width: 90%;
-  margin: 0 auto;
+  margin: 25px auto;
+  min-height: calc(100vh - 268px); /* For making a sticky footer */
 }
 
 /********* Footer ********/
