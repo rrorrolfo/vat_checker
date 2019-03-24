@@ -21,12 +21,22 @@ button:hover {
   cursor: pointer;
 }
 
+.isHidden {
+  display: none;
+}
+
+.isShown {
+  display: initial;
+}
+
 /********* Colors ********/
 
 :root {
   --yellow-color: #f6cb60;
   --black-color: #302e30;
   --blue-color: #005FF2;
+  --green-color: rgb(29, 167, 1);
+  --red-color: rgb(190, 0, 0);
 }
 
 /********* Typography ********/
@@ -94,11 +104,14 @@ header {
 
 /********* Form ********/
 
+#form_container {
+  min-height: calc(100vh - 268px); /* For making a sticky footer */
+}
+
 form {
   width: 85%;
   margin: 25px auto;
   padding: 0 15px;
-  min-height: calc(100vh - 268px); /* For making a sticky footer */
 }
 
 form h2 {
@@ -124,6 +137,48 @@ form h2 {
   background-color: var(--blue-color);
   color: #fff;
   border-radius: 5px;
+}
+
+/********* Success and Failure Messages ********/
+
+#successMessage {
+  border: 2px solid var(--green-color);
+}
+
+#successMessage ul {
+  padding-left: 25px;
+}
+
+#successMessage li {
+  margin-bottom: 5px;
+}
+
+#successMessage h3 {
+  color: var(--green-color);
+}
+
+#successMessage span {
+  font-weight: 900;
+}
+
+#failedMessage {
+  border: 2px solid var(--red-color);
+}
+
+#failedMessage h3 {
+  color: var(--red-color)
+}
+
+#failedMessage,
+#successMessage {
+  width: 85%;
+  margin: 25px auto;
+  padding-left: 10px;
+}
+
+#failedMessage h3,
+#successMessage h3 {
+  text-align: center;
 }
 
 /********* About ********/
