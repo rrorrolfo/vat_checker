@@ -37,6 +37,7 @@ button:hover {
   --blue-color: #005FF2;
   --green-color: rgb(29, 167, 1);
   --red-color: rgb(190, 0, 0);
+  --grey-color: rgb(219, 217, 217);
 }
 
 /********* Typography ********/
@@ -57,6 +58,7 @@ button {
   margin: 10px;
   border-radius: 5px;
   font-size: 1rem;
+  width: 60px;
 }
 
 /********* Header ********/
@@ -83,7 +85,7 @@ header {
   justify-content: space-around;
   margin: 0;
   padding: 0;
-  background-color: rgb(219, 217, 217);
+  background-color: var(--grey-color);
 }
 
 #mainNav li {
@@ -193,5 +195,31 @@ form h2 {
 
 footer {
   background-color: var(--black-color);
-  text-align: right;
+  text-align: center;
+}
+
+
+/********* Media Queries ********/
+
+@media(min-width: 1024px) {
+
+  #mainNav {
+    font-size: 1.2rem;
+  }
+
+  #form_container,
+  #about {
+    width: 60%;
+    margin: 22px auto;
+    padding-top: 15px;
+  }
+
+  footer {
+    text-align: right;
+  }
+
+  footer button:last-child {
+    margin-right: 50px;
+  }
+  
 }
