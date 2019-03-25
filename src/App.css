@@ -21,12 +21,16 @@ button:hover {
   cursor: pointer;
 }
 
+input:focus {
+  outline: none;
+}
+
 .isHidden {
   display: none;
 }
 
 .isShown {
-  display: initial;
+  display: block;
 }
 
 /********* Colors ********/
@@ -127,6 +131,18 @@ form h2 {
   margin: 0 auto;
   display: block;
   font-size: 1rem;
+  text-transform: uppercase;
+}
+
+#vatNumber::placeholder {
+  text-transform: none;
+}
+
+#not_valid_vat {
+  border: 2px solid var(--red-color);
+  padding: 10px;
+  font-size: 1rem;
+  color: var(--red-color);
 }
 
 .submit {
