@@ -12,10 +12,12 @@ class VatForm extends Component {
     // vatNumber: The value of the #vatNumber field which the user enters
     // returnedData: Data returned by the POST request after submitting the form
     // isValid: -boolean- Property data.Valid returned from POST request after submitting the form
+    // isLoading: -boolean- Displays loader text in submit button when it is true
     state = {
         vatNumber: "",
         returnedData: "",
-        isValid: ""
+        isValid: "",
+        isLoading: false
     }
 
     // Handles change in an input, updates state to the value of the correspondant input
@@ -28,8 +30,12 @@ class VatForm extends Component {
     validateInput = () => {
 
         const vat_field = document.querySelector("#vatNumber");
-        const vat_regex = input => /^([A-Z]){2}([0-9]){9}$/i.test(input);
         const validation_error_message = document.querySelector("#not_valid_vat");
+
+        /**
+        * @param {DOM Element} input - Input element that will be tested against the regular expression
+        */
+        const vat_regex = input => /^([A-Z]){2}([0-9]){9}$/i.test(input);
 
         if(vat_regex(vat_field.value) === false) {
             //display error message
@@ -50,6 +56,10 @@ class VatForm extends Component {
 
         event.preventDefault();
 
+        this.setState({
+            isLoading: true
+        })
+
         // Validates the input value is correct before making the request to endpoint
         if ( this.validateInput() ){
             // Makes POST request to endpoint
@@ -60,6 +70,11 @@ class VatForm extends Component {
                 }
             )
             .then( response => {
+
+                // Resets submit button text
+                this.setState({
+                    isLoading: false
+                })
 
                 if(response.data.Valid) {
                     this.setState({
@@ -94,7 +109,7 @@ class VatForm extends Component {
                     {/* Validation  error message */}
                     <p id="not_valid_vat" className="isHidden">The VAT number must be in the format: AA999999999</p>
                     
-                    <Button text="Search" type="submit" stylingClass="submit"/>
+                    <Button text={this.state.isLoading ? ("Searching..."): ("Search")} type="submit" stylingClass="submit"/>
                 </form>
 
                 {/* Displays success message if valid data is returned form endpoint */}
