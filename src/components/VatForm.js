@@ -4,7 +4,7 @@ import axios from 'axios';
 import SuccessMessage from "./UIElements/SuccessMessage";
 import FailedMessage from "./UIElements/FailedMessage";
 
-// Component tht renders a form where user can type a VAT number and information about that VAT number will be returned from a database.
+// Component that renders a form where user can type a VAT number and information about that VAT number will be returned from a database.
 
 class VatForm extends Component {
 
@@ -56,8 +56,6 @@ class VatForm extends Component {
 
         event.preventDefault();
 
-        
-
         // Validates the input value is correct before making the request to endpoint
         if ( this.validateInput() ){
 
@@ -92,7 +90,6 @@ class VatForm extends Component {
             })
             .catch(error => {
                 const failed_message = document.querySelector("#failedMessage p");
-
                 failed_message.textContent = "Oops! seems that there was an error on the request, please try again later"
             })
         }
@@ -100,6 +97,10 @@ class VatForm extends Component {
     }
 
     render() {
+
+        const { Name, Address, CountryCode, VATNumber } = this.state.returnedData;
+        const { isLoading, isValid, returnedData } = this.state;
+
         return(
             <div id="form_container">
 
@@ -112,21 +113,21 @@ class VatForm extends Component {
                     {/* Validation  error message */}
                     <p id="not_valid_vat" className="isHidden">The VAT number must be in the format: AA999999999</p>
                     
-                    <Button text={this.state.isLoading ? ("Searching..."): ("Search")} type="submit" stylingClass="submit"/>
+                    <Button text={ isLoading ? ("Searching..."): ("Search")} type="submit" stylingClass="submit"/>
                 </form>
 
                 {/* Displays success message if valid data is returned form endpoint */}
-                { this.state.isValid && this.state.returnedData ? (
+                { isValid && returnedData ? (
                     <SuccessMessage 
-                vat={ this.state.vatNumber }
-                name={ this.state.returnedData.Name }
-                address={ this.state.returnedData.Address}
-                countryCode={ this.state.returnedData.CountryCode }
-                vatNumbers={ this.state.returnedData.VATNumber } />
+                vat={ `${CountryCode}${VATNumber}` }
+                name={ Name }
+                address={ Address}
+                countryCode={ CountryCode }
+                vatNumbers={ VATNumber } />
                 ) : ("")}
                 
                 {/* Displays failed message if unvalid data is returned form endpoint */}
-                { this.state.isValid === false ? (<FailedMessage />) : ("")}
+                { isValid === false ? (<FailedMessage />) : ("")}
 
             </div>
 

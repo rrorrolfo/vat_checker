@@ -1,22 +1,22 @@
 import React from "react";
 
-const SuccessMessage = props => {
+const SuccessMessage = ({ vat, name, address, countryCode, vatNumbers}) => {
     return(
         <div id="successMessage">
             <h3>Success!</h3>
-            <p>We found the following information for { props.vat }</p>
+            <p>We found the following information for { vat }</p>
             <ul>
                 <li>
-                    <span>Name:</span> { props.name }
+                    <span>Name:</span> { name }
                 </li>
                 <li>
-                    <span>Address:</span> { props.address }
+                    <span>Address:</span> { address }
                 </li>
                 <li>
-                    <span>Country code:</span> { props.countryCode }
+                    <span>Country code:</span> { countryCode }
                 </li>
                 <li>
-                    <span>VAT number:</span> { props.vatNumbers }
+                    <span>VAT number:</span> { vatNumbers }
                 </li>
             </ul>
         </div>
