@@ -1,3 +1,24 @@
+<h1 align="center">VAT Checker Web Application.</h1>
+<p>This application consists of a form where an user can type a VAT number and search for more information regarding that number. The form retrieves information from the endpoint "https://vat.erply.com/numbers". If the request is successful the information related to the VAT number will be displayed in a success message.</p>
+
+<h2 align="center">Technical Specifications:</h2>
+-Application built with React.js library.<br>
+-JSX and JavaScript was used to build out the components for the application in a modular fashion.<br>
+-React Router was used to set up routes.<br>
+-Axios was used to fetch data from the API. I chose this tool considering the good cross-browser consistency it has.<br>
+-Regular expression used to validate the input of the user in real time.<br>
+-Layout styled using CSS3.<br>
+-Layout designed and created from scratch.<br>
+-Application deployed using Netlify services.<br>
+
+<h2 align="center">Technologies used:</h2>
+-React.js<br>
+-React Router<br>
+-JSX<br>
+-Axios<br>
+-Regular Expressions<br>
+-CSS3<br>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
