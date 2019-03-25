@@ -4,8 +4,14 @@ import axios from 'axios';
 import SuccessMessage from "./UIElements/SuccessMessage";
 import FailedMessage from "./UIElements/FailedMessage";
 
+// Component tht renders a form where user can type a VAT number and information about that VAT number will be returned from a database.
+
 class VatForm extends Component {
 
+    // State Properties
+    // vatNumber: The value of the #vatNumber field which the user enters
+    // returnedData: Data returned by the POST request after submitting the form
+    // isValid: -boolean- Property data.Valid returned from POST request after submitting the form
     state = {
         vatNumber: "",
         returnedData: "",
@@ -44,7 +50,8 @@ class VatForm extends Component {
 
         event.preventDefault();
 
-        if ( this.validateInput () ){
+        // Validates the input value is correct before making the request to endpoint
+        if ( this.validateInput() ){
             // Makes POST request to endpoint
             axios.post("https://vat.erply.com/numbers", null, { 
                 params: {
@@ -65,9 +72,11 @@ class VatForm extends Component {
                     })
                 }
             })
-            .catch(error => console.error(error))
-        } else {
-            console.log("not valid input");
+            .catch(error => {
+                const failed_message = document.querySelector("#failedMessage p");
+
+                failed_message.textContent = "Oops! seems that there was an error on the request, please try again later"
+            })
         }
 
     }
@@ -82,6 +91,7 @@ class VatForm extends Component {
 
                     <input type="text" id="vatNumber" placeholder="e.g. EE123456789" name="vatNumber" onChange={ this.handleChange } onKeyUp={ this.validateInput }/>
 
+                    {/* Validation  error message */}
                     <p id="not_valid_vat" className="isHidden">The VAT number must be in the format: AA999999999</p>
                     
                     <Button text="Search" type="submit" stylingClass="submit"/>
