@@ -56,12 +56,15 @@ class VatForm extends Component {
 
         event.preventDefault();
 
-        this.setState({
-            isLoading: true
-        })
+        
 
         // Validates the input value is correct before making the request to endpoint
         if ( this.validateInput() ){
+
+            this.setState({
+                isLoading: true
+            })
+            
             // Makes POST request to endpoint
             axios.post("https://vat.erply.com/numbers", null, { 
                 params: {
