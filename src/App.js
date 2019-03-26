@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import './styles/App.css';
-import { 
-  BrowserRouter,
-  Route,
-  Switch,
-  Redirect } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import Header from "./components/Header";
 import Nav from "./components/Nav"
-import VatForm from "./components/VatForm";
-import About from "./components/About";
+import AppRoutes from "./routes/AppRoutes";
 import Footer from "./components/Footer";
-import NotFound from "./components/NotFound";
+
 
 class App extends Component {
   render() {
@@ -19,12 +14,7 @@ class App extends Component {
         <div>
           <Header />
           <Nav />
-          <Switch>
-            <Route exact path="/" component={ VatForm }/>
-            <Route path="/about" component={ About }/>
-            <Route path="/notfound" component={ NotFound }/>
-            <Route render={ () => <Redirect to="/notfound" /> }/>
-          </Switch>
+          <AppRoutes />
           <Footer />
         </div>
       </BrowserRouter>
