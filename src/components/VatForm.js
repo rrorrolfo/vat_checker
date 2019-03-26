@@ -13,11 +13,13 @@ class VatForm extends Component {
     // returnedData: Data returned by the POST request after submitting the form
     // isValid: -boolean- Property data.Valid returned from POST request after submitting the form
     // isLoading: -boolean- Displays loader text in submit button when it is true
+    // isLoading: -boolean- Keeps state of the validation outcome of the #vatNumber input
     state = {
         vatNumber: "",
         returnedData: "",
         isValid: "",
-        isLoading: false
+        isLoading: false,
+        hasErrors: false
     }
 
     // Handles change in an input, updates state to the value of the correspondant input
@@ -29,23 +31,20 @@ class VatForm extends Component {
     // Validates if the input value is formated as "AA000000000"
     validateInput = () => {
 
-        const vat_field = document.querySelector("#vatNumber");
-        const validation_error_message = document.querySelector("#not_valid_vat");
-
         /**
-        * @param {DOM Element} input - Input element that will be tested against the regular expression
+        * @param {string} input - Input element that will be tested against the regular expression
         */
         const vat_regex = input => /^([A-Z]){2}([0-9]){9}$/i.test(input);
 
-        if(vat_regex(vat_field.value) === false) {
-            //display error message
-            validation_error_message.className = "isShown";
-            vat_field.style.border = "2px solid rgb(190, 0, 0)";
+        if(vat_regex(this.state.vatNumber) === false) {
+            this.setState({
+                hasErrors: true
+            })
             return false
         } else {
-            //hide error message
-            validation_error_message.className = "isHidden";
-            vat_field.style.border = "2px solid rgb(29, 167, 1)";
+            this.setState({
+                hasErrors: false
+            })
             return true
         }
     }
@@ -72,19 +71,20 @@ class VatForm extends Component {
             )
             .then( response => {
 
-                // Resets submit button text
+                const { data } = response
+
                 this.setState({
                     isLoading: false
                 })
 
                 if(response.data.Valid) {
                     this.setState({
-                        returnedData: response.data,
-                        isValid: true
+                        returnedData: data,
+                        isValid: data.Valid
                     })
                 } else {
                     this.setState({
-                        isValid: false
+                        isValid: data.Valid
                     })
                 }
             })
@@ -99,7 +99,7 @@ class VatForm extends Component {
     render() {
 
         const { Name, Address, CountryCode, VATNumber } = this.state.returnedData;
-        const { isLoading, isValid, returnedData } = this.state;
+        const { isLoading, isValid, returnedData, hasErrors } = this.state;
 
         return(
             <div id="form_container">
@@ -108,10 +108,10 @@ class VatForm extends Component {
                     <h2>VAT Checker</h2>
                     <p>You can get more information about a VAT number, just fill the form with the VAT number you want to look up for.</p>
 
-                    <input type="text" id="vatNumber" placeholder="e.g. EE123456789" name="vatNumber" onChange={ this.handleChange } onKeyUp={ this.validateInput }/>
+                    <input type="text" id="vatNumber" className={ hasErrors ? ("hasErrors") : ("isCorrect")} placeholder="e.g. EE123456789" name="vatNumber" onChange={ this.handleChange } onKeyUp={ this.validateInput }/>
 
                     {/* Validation  error message */}
-                    <p id="not_valid_vat" className="isHidden">The VAT number must be in the format: AA999999999</p>
+                    <p id="not_valid_vat" className={ hasErrors ? ("isShown") : ("isHidden")}>The VAT number must be in the format: AA999999999</p>
                     
                     <Button text={ isLoading ? ("Searching..."): ("Search")} type="submit" stylingClass="submit"/>
                 </form>

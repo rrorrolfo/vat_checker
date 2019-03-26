@@ -33,6 +33,14 @@ input:focus {
   display: block;
 }
 
+.hasErrors {
+  border: 2px solid var(--red-color);
+}
+
+.isCorrect {
+  border: 2px solid var(--green-color);
+}
+
 /********* Colors ********/
 
 :root {
