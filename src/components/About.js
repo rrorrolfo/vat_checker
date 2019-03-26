@@ -6,6 +6,7 @@ const About = () => {
         <div id="about">
             <h1>Information about this project:</h1>
             <p>This application consists of a form where an user can type a VAT number and search for more information regarding that number. The form retrieves information from the endpoint "https://vat.erply.com/numbers". If the request is successful the information related to the VAT number will be displayed in a success message.</p>
+            <p>Github repository: <a href="https://github.com/rrorrolfo/vat_checker" target="_blank" rel="noopener noreferrer">https://github.com/rrorrolfo/vat_checker</a></p>
 
             <h2>Technical Specifications:</h2>
             <ul>
